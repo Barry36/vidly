@@ -57,13 +57,14 @@ class Movies extends Component {
                 key={movie._id}
                 movie={movie}
                 onDelete={this.handleDelete}
-                onLike={this.handleLike}
+                onLike={this.handleLike} 
+                // prop1 = {this.state.movie._id}
               ></Movie>
             ))}
           </tbody>
         </table>
         <Pagination
-          itemsCount="ane" //{movieCount}
+          itemsCount={movieCount}
           pageSize={pageSize}
           currentPage={currentPage}
           onPageChange={this.handlePageChange}
