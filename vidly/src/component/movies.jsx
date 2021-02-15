@@ -15,9 +15,10 @@ class Movies extends Component {
   };
 
   componentDidMount() {
+    const genres = [{ name: "All Genres" }, ...getGenres()];
     this.setState({
       movies: getMovies(),
-      genres: getGenres(),
+      genres,
     });
   }
 
@@ -40,7 +41,7 @@ class Movies extends Component {
   };
 
   handleGenreSelect = (genre) => {
-    this.setState({ selectedGenre: genre });
+    this.setState({ selectedGenre: genre, currentPage: 1 });
   };
 
   testState = () => {
@@ -59,19 +60,13 @@ class Movies extends Component {
     }
 
     // Pagination happens here
-
-    console.log("selectedGenre", selectedGenre, allMovies);
     let filteredMovies = [];
-
-    if (Object.keys(selectedGenre).length !== 0) {
+    if (Object.keys(selectedGenre).length !== 0 && selectedGenre._id) {
       filteredMovies = allMovies.filter(
         (m) => m.genre._id === selectedGenre._id
       );
-
-      console.log("Barry");
     } else {
       filteredMovies = allMovies;
-      console.log("Hannah");
     }
 
     console.log("filteredMovies", filteredMovies);
